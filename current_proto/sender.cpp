@@ -1,5 +1,5 @@
 #include "sender.h"
-#include "common_functions/common_functions.h"
+
 
 Sender::Sender(QObject *parent)
 {

@@ -12,7 +12,8 @@ STRONG_ENUM(Command,
             SET_EXTR_2_TEMP = 7,
             SET_WAIT_EXTR_1_TEMP = 8,
             SET_WAIT_EXTR_2_TEMP = 9,
-            DISABLE_MOTORS = 10);
+            DISABLE_MOTORS = 10,
+            CLEAR_STATES = 11);
 
 struct Motion
 {

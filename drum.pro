@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -24,11 +24,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    current_proto/sender.cpp \
+    common_functions/common_functions.cpp
 
 HEADERS  += mainwindow.h \
     i_register.h \
     i_table.h \
-    printer_resisters.h
+    printer_resisters.h \
+    current_proto/sender.h \
+    motion/motion.h \
+    project_config.h \
+    common_functions/common_functions.h \
+    global_macros/qt_global_macros.h \
+    circular_buffer/circular_buffer.h
 
 FORMS    += mainwindow.ui

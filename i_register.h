@@ -78,3 +78,37 @@ public:
         return 0;
     }
 };
+
+
+class Coord
+{
+public:
+    float x;
+    float y;
+};
+
+class CoordReg : public Register<CoordReg>
+{
+public:
+    CoordReg( value) : Register<CoordReg>(value)
+    {
+
+    }
+    void getBytes(uint8_t * buf, uint32_t * len)
+    {
+        *buf = 0;
+        *len = 1;
+    }
+    void setBytes(uint8_t * buf, uint32_t len)
+    {
+
+    }
+    uint32_t getLen()
+    {
+        return m_size;
+    }
+    uint32_t getRegAddr()
+    {
+        return 0;
+    }
+}
