@@ -63,9 +63,10 @@ HEADERS  += mainwindow.h \
     slonyk/lwip_transport_provider.h \
     slonyk/project_config.h \
     slonyk/standart_registers.h \
-    slonyk/types.h
+    slonyk/types.h \
+    src/callbacks/callbacks.h
 
 FORMS    += mainwindow.ui
-INCLUDEPATH += $$PWD/slonyk
+INCLUDEPATH += $$PWD/slonyk $$PWD/src/callbacks
 
 
