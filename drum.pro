@@ -26,7 +26,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     current_proto/sender.cpp \
-    common_functions/common_functions.cpp
+    common_functions/common_functions.cpp \
+    slonyk/slonyk/slonyk_master.cpp \
+    slonyk/slonyk/slonyk_segment.cpp \
+    slonyk/callbacks_cpp11_test.cpp \
+    slonyk/protoEng.cpp
 
 HEADERS  += mainwindow.h \
     i_register.h \
@@ -37,6 +41,31 @@ HEADERS  += mainwindow.h \
     project_config.h \
     common_functions/common_functions.h \
     global_macros/qt_global_macros.h \
-    circular_buffer/circular_buffer.h
+    circular_buffer/circular_buffer.h \
+    slonyk/slonyk/sl_session.h \
+    slonyk/slonyk/slonyk_data_link_provider.h \
+    slonyk/slonyk/slonyk_master.h \
+    slonyk/slonyk/slonyk_network_provider.h \
+    slonyk/slonyk/slonyk_packet.h \
+    slonyk/slonyk/slonyk_segment.h \
+    slonyk/slonyk/slonyk_settings.h \
+    slonyk/slonyk/slonyk_slave.h \
+    slonyk/slonyk/slonyk_table.h \
+    slonyk/slonyk/slonyk_transport_provider.h \
+    slonyk/eng_settings.h \
+    slonyk/i_data_link_provider.h \
+    slonyk/i_descriptor.h \
+    slonyk/i_network_provider.h \
+    slonyk/i_provider.h \
+    slonyk/i_register.h \
+    slonyk/i_table.h \
+    slonyk/i_transport_provider.h \
+    slonyk/lwip_transport_provider.h \
+    slonyk/project_config.h \
+    slonyk/standart_registers.h \
+    slonyk/types.h
 
 FORMS    += mainwindow.ui
+INCLUDEPATH += $$PWD/slonyk
+
+
