@@ -1,16 +1,17 @@
 #pragma once
 #include "i_table.h"
+#include "eng_settings.h"
 
-class SlTable : public  ITable
-{
-    public :
-        void getRoRegs(IRegister * regs, uint32_t regsNum)
-                {
+//class SlTable : public  ITable
+//{
+//    public :
+//        void getRoRegs(IRegister * regs, uint32_t regsNum)
+//                {
 
-                }
-    private:
-        uint32_t m_someVal = 555;
-};
+//                }
+//    private:
+//        uint32_t m_someVal = 555;
+//};
 
 
 enum class RoUint32RegNames
@@ -41,7 +42,7 @@ enum class WoInt8RegNames
 };
 
 
-class SimpleTable : public ITable
+class SimpleTable :public ITable
 {
     public:
         void getRegs(IRegister * regs, uint32_t * regsNum)

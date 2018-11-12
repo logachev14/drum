@@ -30,11 +30,9 @@ SOURCES += main.cpp\
     slonyk/slonyk/slonyk_master.cpp \
     slonyk/slonyk/slonyk_segment.cpp \
     slonyk/callbacks_cpp11_test.cpp \
-    slonyk/protoEng.cpp
+    reg_proto/reg_proto.cpp
 
 HEADERS  += mainwindow.h \
-    i_register.h \
-    i_table.h \
     printer_resisters.h \
     current_proto/sender.h \
     motion/motion.h \
@@ -63,8 +61,11 @@ HEADERS  += mainwindow.h \
     slonyk/lwip_transport_provider.h \
     slonyk/project_config.h \
     slonyk/standart_registers.h \
-    slonyk/types.h
+    slonyk/types.h \
+    slonyk/callbacks.h \
+    reg_proto/reg_proto.h
 
 FORMS    += mainwindow.ui
+INCLUDEPATH += $$PWD/slonyk
 
 

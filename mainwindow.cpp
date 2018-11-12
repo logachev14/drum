@@ -118,3 +118,126 @@ void MainWindow::clearAll()
     motion.command = Command::CLEAR_STATES;
     emit writeCommand(motion);
 }
+
+void MainWindow::on_Xminus_pressed()
+{
+    Motion motion;
+    motion.f = 500;
+    motion.command = Command::MOVE_X_BACKWARD;
+    emit writeCommand(motion);
+}
+
+void MainWindow::on_Xminus_released()
+{
+    Motion motion;
+    motion.command = Command::STOP_MOVE;
+    emit writeCommand(motion);
+}
+
+void MainWindow::on_Xplus_released()
+{
+    Motion motion;
+
+    motion.command = Command::STOP_MOVE;
+    emit writeCommand(motion);
+}
+
+void MainWindow::on_Yminus_pressed()
+{
+    Motion motion;
+    motion.f = 500;
+    motion.command = Command::MOVE_Y_BACKWARD;
+    emit writeCommand(motion);
+}
+
+void MainWindow::on_Yminus_released()
+{
+    Motion motion;
+    motion.f = 500;
+    motion.command = Command::STOP_MOVE;
+    emit writeCommand(motion);
+}
+
+void MainWindow::on_Yplus_pressed()
+{
+    Motion motion;
+    motion.f = 500;
+    motion.command = Command::MOVE_Y_FORWARD;
+    emit writeCommand(motion);
+}
+
+void MainWindow::on_Yplus_released()
+{
+    Motion motion;
+    motion.command = Command::STOP_MOVE;
+    emit writeCommand(motion);
+}
+
+void MainWindow::on_Eminus_pressed()
+{
+    Motion motion;
+    motion.f = 500;
+    motion.command = Command::MOVE_E_BACKWARD;
+    emit writeCommand(motion);
+}
+
+void MainWindow::on_Eminus_released()
+{
+    Motion motion;
+    motion.command = Command::STOP_MOVE;
+    emit writeCommand(motion);
+}
+
+void MainWindow::on_Eplus_pressed()
+{
+    Motion motion;
+    motion.f = 500;
+    motion.command = Command::MOVE_E_FORWARD;
+    emit writeCommand(motion);
+}
+
+void MainWindow::on_Eplus_released()
+{
+    Motion motion;
+    motion.command = Command::STOP_MOVE;
+    emit writeCommand(motion);
+}
+
+void MainWindow::on_Zminus_pressed()
+{
+    Motion motion;
+    motion.f = 500;
+    motion.command = Command::MOVE_Z_BACKWARD;
+    emit writeCommand(motion);
+}
+
+void MainWindow::on_Zminus_released()
+{
+    Motion motion;
+    motion.command = Command::STOP_MOVE;
+    emit writeCommand(motion);
+}
+
+void MainWindow::on_Zplus_pressed()
+{
+    Motion motion;
+    motion.f = 500;
+    motion.command = Command::MOVE_Z_FORWARD;
+    emit writeCommand(motion);
+}
+
+void MainWindow::on_Zplus_released()
+{
+    Motion motion;
+    motion.f = 500;
+    motion.command = Command::STOP_MOVE;
+    emit writeCommand(motion);
+}
+
+void MainWindow::on_Xplus_pressed()
+{
+    Motion motion;
+    motion.f = 500;
+    motion.command = Command::MOVE_X_FORWARD;
+    emit writeCommand(motion);
+}

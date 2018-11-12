@@ -7,14 +7,14 @@
 class SlSegment : public SegmentBase<SlAcknowledge, SlMessageType, uint16_t>
 {
     public:
-        SlSegment(IRawDataProvider & rawDataProvider) : SegmentBase<SlAcknowledge, SlMessageType, uint16_t>(rawDataProvider),
-                                                        m_currAck(SlAcknowledge::SL_REQUEST),
-                                                        m_currMessType(SlMessageType::SL_BROADCAST),
-                                                        m_currAddr(0),
-                                                        m_totalDataLen(0),
-                                                        m_startRegsDataPos(m_totalData + 1),
-                                                        m_endRegsAddrPos(reinterpret_cast<uint16_t *>(m_totalData + 1)),
-                                                        m_endRegsDataPos(m_totalData + 1)
+        SlSegment()  :  SegmentBase<SlAcknowledge, SlMessageType, uint16_t>(RawData<111>()),
+                        m_currAck(SlAcknowledge::SL_REQUEST),
+                        m_currMessType(SlMessageType::SL_BROADCAST),
+                        m_currAddr(0),
+                        m_totalDataLen(0),
+                        m_startRegsDataPos(m_totalData + 1),
+                        m_endRegsAddrPos(reinterpret_cast<uint16_t *>(m_totalData + 1)),
+                        m_endRegsDataPos(m_totalData + 1)
         {
         }
         SlAcknowledge & getAck()

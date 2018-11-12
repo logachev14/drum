@@ -42,19 +42,20 @@ public:
 	void connectionStateChanged(bool state){};
 };
 
-template<class TableType>
+
 class SlSlave : public SlSlaveBase
 {
     public:
-        SlSlave(uint32_t addr, TableType & table, ITransportProvider & provider): m_addr(addr), m_table(table), m_provider(provider)
+        SlSlave(uint32_t addr, ITable & table, ITransportProvider & provider): m_addr(addr), m_table(table), m_provider(provider)
         {
 
         }
+
         uint32_t getAddr()
         {
             return m_addr;
         }
-        TableType & getTable()
+        ITable & getTable()
         {
             return m_table;
         }
