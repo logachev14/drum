@@ -16,7 +16,7 @@ class Reg_proto : public QObject
 {
     Q_OBJECT
 public:
-    Reg_proto(): m_master(&m_motherSlave), m_motherSlave(SlSlave(0, m_slaveTable, m_transportProvider))
+    Reg_proto(): m_master(&m_motherSlave), m_motherSlave(SlSlave(1, m_slaveTable, m_transportProvider))
     {
 
     }

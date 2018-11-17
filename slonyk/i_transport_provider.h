@@ -10,7 +10,7 @@ class ITransportProvider
         virtual void send(ISegment & segment) = 0;
 
         // для Network provider'a
-        virtual void packetReceived(IPacket & packet) = 0;
-        callback::Callback<void (IPacket & packet)> sendPacket;
-        virtual ~ITransportProvider(){};
+        virtual void packetReceived(IRawDataProvider & raw) = 0;
+        callback::Callback<void (IRawDataProvider & raw)> sendPacket;
+        virtual ~ITransportProvider(){}
 };

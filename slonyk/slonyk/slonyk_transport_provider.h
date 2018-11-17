@@ -7,7 +7,7 @@ class SlTransportProvider : public ITransportProvider
         {
 
         }
-        void packetReceived(IPacket & packet)
+        void packetReceived(IRawDataProvider & rawDataProvider)
         {
 
         }

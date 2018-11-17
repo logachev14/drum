@@ -44,8 +44,6 @@ HEADERS  += mainwindow.h \
     slonyk/slonyk/slonyk_data_link_provider.h \
     slonyk/slonyk/slonyk_master.h \
     slonyk/slonyk/slonyk_network_provider.h \
-    slonyk/slonyk/slonyk_packet.h \
-    slonyk/slonyk/slonyk_segment.h \
     slonyk/slonyk/slonyk_settings.h \
     slonyk/slonyk/slonyk_slave.h \
     slonyk/slonyk/slonyk_table.h \
@@ -63,7 +61,8 @@ HEADERS  += mainwindow.h \
     slonyk/standart_registers.h \
     slonyk/types.h \
     slonyk/callbacks.h \
-    reg_proto/reg_proto.h
+    reg_proto/reg_proto.h \
+    slonyk/slonyk/slonyk_types.h
 
 FORMS    += mainwindow.ui
 INCLUDEPATH += $$PWD/slonyk

@@ -27,8 +27,8 @@
  Изменения:
   - namespace теперь callback
   - страж включения изменен
-  - макросы для биндинга изменили название, порядок аргументов и & сами дописывают; 
-    добавился "умный" макрос CALLBACK_BIND, который по количеству аргументов определяет, 
+  - макросы для биндинга изменили название, порядок аргументов и & сами дописывают;
+    добавился "умный" макрос CALLBACK_BIND, который по количеству аргументов определяет,
     биндится метод или функция
   - добавлен конструктор, принимающий int - для более явной инициализации нулем
 
@@ -213,7 +213,7 @@ public:
     Callback(NullCallback)        : func(0), obj(0) {}
     explicit Callback(int a)      : func(0), obj(0) { (void)a; }
     Callback(const Callback& rhs) : func(rhs.func), obj(rhs.obj) {}
-    ~Callback() {} 
+    ~Callback() {}
 
     Callback& operator=(NullCallback)
         { obj = 0; func = 0; return *this; }

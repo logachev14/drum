@@ -1,13 +1,19 @@
 #pragma once
+
 #include "eng_settings.h"
 #include "types.h"
 #include "slonyk_settings.h"
 
+class SlRawData : public RawData<SL_MAX_FULL_PACKET_LEN>
+{
+
+};
 
 class SlSegment : public SegmentBase<SlAcknowledge, SlMessageType, uint16_t>
 {
     public:
-        SlSegment()  :  m_currAck(SlAcknowledge::SL_REQUEST),
+        SlSegment()  :  SegmentBase<SlAcknowledge, SlMessageType, uint16_t>(),
+                        m_currAck(SlAcknowledge::SL_REQUEST),
                         m_currMessType(SlMessageType::SL_BROADCAST),
                         m_currAddr(0),
                         m_totalDataLen(0),
@@ -22,7 +28,7 @@ class SlSegment : public SegmentBase<SlAcknowledge, SlMessageType, uint16_t>
         }
         void setAck(SlAcknowledge ack)
         {
-        	m_currAck = ack;
+            m_currAck = ack;
         }
         SlMessageType & getMessageType()
         {
@@ -30,7 +36,7 @@ class SlSegment : public SegmentBase<SlAcknowledge, SlMessageType, uint16_t>
         }
         void setMessageType(SlMessageType messType)
         {
-        	m_currMessType = messType;
+            m_currMessType = messType;
         }
         uint16_t & getDevAddr()
         {
@@ -38,54 +44,56 @@ class SlSegment : public SegmentBase<SlAcknowledge, SlMessageType, uint16_t>
         }
         void setAddr(uint16_t addr)
         {
-        	m_currAddr = addr;
+            m_currAddr = addr;
         }
         bool addReg(IRegister & reg)
         {
-        	bool result = false;
-        	uint8_t * regData = NULL;
-        	uint32_t * regLen = NULL;
-        	reg.getBytes(regData, regLen);
+            bool result = false;
+            uint8_t * regData = NULL;
+            uint32_t * regLen = NULL;
+            reg.getBytes(regData, regLen);
 
-        	// длина в байтах данных и + длина адреса
-        	if(hasFreeSpace(*regLen + SL_REG_ADDR_LEN))
-        	{
-        		// необходима некоторая магия по перебрасываю байтов данных и адресов туда-сюда
-        		// 1. сдвигаем текущую дату вправо, что бы освободить место под новый адрес
-        		// и итерируем адреса данных, начальный и конечный
+            // длина в байтах данных и + длина адреса
+            if(hasFreeSpace(*regLen + SL_REG_ADDR_LEN))
+            {
+                // необходима некоторая магия по перебрасываю байтов данных и адресов туда-сюда
+                // 1. сдвигаем текущую дату вправо, что бы освободить место под новый адрес
+                // и итерируем адреса данных, начальный и конечный
 #warning не знаю что произойдет, если будет перекрытие адресов данных для memcpy, поэтому делаю пока так
-        		for(uint8_t i = 0; i < *m_startRegsDataPos - * m_endRegsDataPos + 1; i++ )
-        		{
-        			*(m_endRegsDataPos + sizeof(uint16_t) - i) = *(m_endRegsDataPos - i);
-        		}
-        		m_endRegsDataPos+=2;
-        		m_startRegsDataPos+=2;
-        		// 2. добавляем адрес регистра и итерируем
-        		*m_endRegsAddrPos = reg.getRegAddr();
-        		m_endRegsAddrPos++;
-        		// 3. добавляем дату в массив, изменяя endDataPos
-        		memcpy(m_endRegsDataPos+1, regData, *regLen);
-        		m_endRegsDataPos += *regLen;
-        		// 4. увеличиваем тотальную длину на величину данных и длину адреса
-        		m_totalDataLen += (*regLen + SL_REG_ADDR_LEN);
-        		result = true;
-        	}
-        	return result;
+                for(uint8_t i = 0; i < *m_startRegsDataPos - * m_endRegsDataPos + 1; i++ )
+                {
+                    *(m_endRegsDataPos + sizeof(uint16_t) - i) = *(m_endRegsDataPos - i);
+                }
+                m_endRegsDataPos+=2;
+                m_startRegsDataPos+=2;
+                // 2. добавляем адрес регистра и итерируем
+                *m_endRegsAddrPos = reg.getRegAddr();
+                m_endRegsAddrPos++;
+                // 3. добавляем дату в массив, изменяя endDataPos
+                memcpy(m_endRegsDataPos+1, regData, *regLen);
+                m_endRegsDataPos += *regLen;
+                // 4. увеличиваем тотальную длину на величину данных и длину адреса
+                m_totalDataLen += (*regLen + SL_REG_ADDR_LEN);
+                result = true;
+            }
+            return result;
         }
+
         bool addReg(uint32_t regAddr, uint32_t regLen)
         {
-        	bool result = false;
-        	if(hasFreeSpace(regLen + SL_REG_ADDR_LEN))
-        	{
-        		*m_endRegsAddrPos = regAddr;
-        		m_endRegsAddrPos++;
-        		result = true;
-        	}
-        	return result;
+            bool result = false;
+            if(hasFreeSpace(regLen + SL_REG_ADDR_LEN))
+            {
+                *m_endRegsAddrPos = regAddr;
+                m_endRegsAddrPos++;
+                result = true;
+            }
+            return result;
         }
+
         void setRawData(IRawDataProvider & rawDataProvider)
         {
-            m_rawDataProviderPtr = &rawDataProvider;
+            m_rawDataProviderPtr = rawDataProvider;
         }
 
 //        void getData(uint8_t * data, uint32_t * len)
@@ -130,11 +138,11 @@ class SlSegment : public SegmentBase<SlAcknowledge, SlMessageType, uint16_t>
         uint8_t * m_endRegsDataPos;
         bool hasFreeSpace(uint32_t newData)
         {
-        	if(SL_MAX_DATA_LEN - m_totalDataLen >= newData)
-        	{
-        		return true;
-        	}
-        	return false;
+            if(SL_MAX_DATA_LEN - m_totalDataLen >= newData)
+            {
+                return true;
+            }
+            return false;
         }
         void parseHeader(uint8_t * header, uint32_t len)
         {
@@ -176,12 +184,12 @@ class SlSegment : public SegmentBase<SlAcknowledge, SlMessageType, uint16_t>
                 }
                 case SL_MESS_WRITE:
                 {
-                	m_currMessType = SlMessageType::SL_WRITE;
+                    m_currMessType = SlMessageType::SL_WRITE;
                     break;
                 }
                 case SL_MESS_READ:
                 {
-                	m_currMessType = SlMessageType::SL_READ;
+                    m_currMessType = SlMessageType::SL_READ;
                     break;
                 }
                 default:

@@ -15,7 +15,7 @@
 #define SL_HEADER_LEN 4
 // 1 байт - кол-во регистров в сегменте
 #define SL_MAX_DATA_LEN 199
-#define SL_MAX_PACKET_LEN 204
+#define SL_MAX_FULL_PACKET_LEN 204
 
 #define SL_ACK_POS 0
 #define SL_MTYPE_POS 1
